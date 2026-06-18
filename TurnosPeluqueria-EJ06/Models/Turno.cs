@@ -7,4 +7,8 @@ public class Turno
     public string Servicio { get; set; }
     public DateTime FechaHora { get; set; }
     public string Estado { get; set; }
+
+
+
+
 }

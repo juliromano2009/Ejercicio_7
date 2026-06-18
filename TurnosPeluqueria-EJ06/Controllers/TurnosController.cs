@@ -44,4 +44,5 @@ public class TurnosController : Controller
         bd.CambiarEstado(id, "Cancelado");
         return RedirectToAction("Index");
     }
+    
 }

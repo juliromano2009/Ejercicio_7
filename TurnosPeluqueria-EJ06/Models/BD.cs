@@ -6,31 +6,39 @@ using TurnosPeluqueria_EJ06.Models;
 
 public class BD
 {
-    private string _connectionString =
-        @"";
-
+    public string _connectionString = @"Server=localhost; DataBase = TurnosDB; Integrated Security=True; TrustServerCertificate=True;"; 
     
-    public string _connectionString = @"Server=localhost; DataBase = TurnosBD; Integrated Security=True; TrustServerCertificate=True;"; 
 
 
     public List<Turno> ObtenerTurnos()
     {
-        
-
+         List <Turno> turnos = new List<Turno>();
+        using(SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            string query = "SELECT * FROM Turnos";
+            turnos = connection.Query<Turno>(query).ToList();
+        }
+        return turnos; 
     }
 
-    public int AgregarTurno(Turno t)
+    public void AgregarTurno(Turno t)
     {
-        // TODO
+        string query = "INSERT INTO Turnos (NombreCliente, Servicio, FechaHora, Estado) VALUES (@NombreCliente, @Servicio, @FechaHora, @Estado)";
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query , new { NombreCliente = t.NombreCliente, Servicio = t.Servicio, FechaHora = t.FechaHora, Estado = t.Estado }); 
+        }
     }
 
 
-    /*
-    public int CambiarEstado(int id, string nuevoEstado)
+    
+    public void CambiarEstado(int id, string nuevoEstado)
     {
-        // TODO
-
-        throw new NotImplementedException();
+        string query = "UPDATE [Turnos] SET Estado = @nuevoEstado WHERE Id = @id";
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query, new { NuevoEstado = nuevoEstado, Id = id });
+        }
+    
     }
-    */
 }
