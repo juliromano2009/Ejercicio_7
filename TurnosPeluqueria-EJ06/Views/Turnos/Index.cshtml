@@ -38,10 +38,15 @@ else
                         <button type="submit">Atender</button>
                     </form>
 
-                    <form action='@Url.Action("Cancelar", "Turnos")' method="post" style="display:inline;">
+                    <form action='@Url.Action("Cancelar", "Turnos" )' method="post" style="display:inline;">
                         <input type="hidden" name="id" value="@t.Id" />
                         <button type="submit">Cancelar</button>
                     </form>
+                    <form action='@Url.Action("ModificarHorario", "Turnos")' method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@t.Id" />
+                        <button type="submit">Cambiar Turno</button>
+                    </form>
+                    
                 </td>
             </tr>
         }

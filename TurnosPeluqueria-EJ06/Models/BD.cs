@@ -41,4 +41,13 @@ public class BD
         }
     
     }
+    public void CambiarHorario(int id, DateTime fecha)
+    {
+        string query = "UPDATE [Turnos] SET FechaHora = @fecha WHERE Id = @Id";
+        
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            connection.Execute(query, new { FechaHora = fecha, Id = id });
+        }
+    }
 }

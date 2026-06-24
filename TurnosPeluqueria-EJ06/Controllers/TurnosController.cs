@@ -30,6 +30,21 @@ public class TurnosController : Controller
         bd.AgregarTurno(turno);
         return RedirectToAction("Index");
     }
+     [HttpPost]
+    public IActionResult ModificarHorario(int id)
+    {
+       return View();
+    }
+
+         [HttpPost]
+    public IActionResult ActualizarHorario(int id , DateTime fecha)
+    {
+        bd.CambiarHorario(id, fecha);
+       return View("Index");
+    }
+
+
+
 
     [HttpPost]
     public IActionResult Atender(int id)
